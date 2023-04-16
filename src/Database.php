@@ -34,12 +34,39 @@ class Database
             $title = $this->conn->quote($data['title']);
             $description = $this->conn->quote($data['description']);
             $datetime = date('Y-m-d H:i:s');
-            $query = "INSERT INTO notes(title,description,datetime) VALUES($title,$description, '$datetime')";
+            $query = "INSERT INTO notes(title,description,datatime) VALUES($title,$description, '$datetime')";
             $result = $this->conn->exec($query);
         } catch (Throwable $e) {
             throw new StorageException('Nie udalo sie utworzyc notatki', 400, $e);
         }
     }
+
+    public function getNotes(): array
+    {
+        try {
+            $notes = [];
+            $query = "SELECT id,title,datatime FROM notes";
+            $result = $this->conn->query($query, PDO::FETCH_ASSOC);
+            foreach ($result as $row) {
+                $notes[] = $row;
+            }
+            return $notes;
+        } catch (Throwable $e) {
+            throw new StorageException('Nie udalo sie pobrac danych o notatkach', 400, $e);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     private function volidateConfig(array $config): void
     {

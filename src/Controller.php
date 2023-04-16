@@ -51,7 +51,10 @@ class Controller
             default:
                 $page = 'list';
                 $data = $this->getRequestGet();
-                $viewParams['before'] = $data['before'] ?? null;
+                $viewParams = [
+                    'notes' => $this->database->getNotes(),
+                    'before' => $data['before'] ?? null,
+                ];
                 break;
         }
         $this->view->render($page, $viewParams);

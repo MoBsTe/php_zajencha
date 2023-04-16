@@ -34,4 +34,5 @@ try {
     echo '<h3>' . $e->getMessage() . '</h3>';
 } catch (Throwable $e) {
     echo "<h1> Wystapil blod w aplikacji! </h1>";
+    dump($e);
 }
