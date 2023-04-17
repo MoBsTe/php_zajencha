@@ -2,6 +2,22 @@
     <section>
         <div class="message">
             <?php
+            if (!empty($params['error'])) {
+
+                switch ($params['error']) {
+                    case 'noteNotFound':
+                        echo "Notatka zostala utworzona";
+                        break;
+                    case 'missingNoteId':
+                        echo 'Niepoprawny identyfikator notatki!';
+                        break;
+                }
+            }
+            ?>
+        </div>
+
+        <div class="message">
+            <?php
             if (!empty($params['before'])) {
 
                 switch ($params['before']) {
