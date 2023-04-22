@@ -21,7 +21,6 @@ use App\Request;
 use Throwable;
 
 
-
 $request = new Request($_GET, $_POST);
 
 try {
