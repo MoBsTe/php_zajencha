@@ -12,7 +12,7 @@
                 <?php echo htmlentities($note['description']) ?>
             </li>
             <li>Utworzono:
-                <?php echo htmlentities($note['created']) ?>
+                <?php echo htmlentities($note['datatime']) ?>
             </li>
             <li> <a href="/"> <button>Powrit do listy notatek</button></a></li>
         </ul>

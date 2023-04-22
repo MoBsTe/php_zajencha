@@ -46,15 +46,15 @@
                     <?php foreach ($params['notes'] as $note): ?>
                         <tr>
                             <td>
-                                <?php echo $note['id'] ?>
+                                <?php echo (int) $note['id'] ?>
                             </td>
                             <td>
-                                <?php echo $note['title'] ?>
+                                <?php echo htmlentities( $note['title']) ?>
                             </td>
                             <td>
-                                <?php echo $note['datatime'] ?>
+                                <?php echo htmlentities( $note['datatime']) ?>
                             </td>
-                            <td>Options</td>
+                            <td><a href="/?action=show&id=<?php echo (int) $note['id'] ?>">Options</a></td>
 
                         </tr>
                     <?php endforeach; ?>
