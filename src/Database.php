@@ -66,16 +66,17 @@ class Database
     }
 
 
-    public function editNotes(int $id, array $data) {
+    public function editNotes(int $id, array $data): void {
         try {
             // $id = $this->conn->quote($data['id']);
             $title = $this->conn->quote($data['title']);
             $description = $this->conn->quote($data['description']);
-            $query = "UPDATE `notes` SET `title`=$title, `description`=$description WHERE `id` = $id";
+
+            $query = "UPDATE notes SET title = $title, description = $description WHERE id = $id";
             $this->conn->exec($query);
 
         } catch (Throwable $e) {
-            throw new StorageException('Nie udalo sie pobrac danych o notatkach', 400, $e);
+            throw new StorageException('Nie udalo sie edytowac danych o notatkach', 400, $e);
         }
     }
 

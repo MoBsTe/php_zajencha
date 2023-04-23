@@ -56,7 +56,7 @@ class NoteController extends AbstractController
     public function editAction(){
 
         if($this->request->isPost()) {
-            $noteId = (int) $this->request->getParams('id');
+            $noteId = (int) $this->request->postParams('id');
             $noteData = [
                 'title' => $this->request->postParams('title'),
                 'description' => $this->request->postParams('description'),
