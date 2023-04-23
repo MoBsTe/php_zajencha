@@ -14,7 +14,15 @@
             <li>Utworzono:
                 <?php echo htmlentities($note['datatime']) ?>
             </li>
-            <li> <a href="/"> <button>Powrit do listy notatek</button></a></li>
+            <li> 
+                <a href="/"> <button>Powrit do listy notatek</button></a>
+            </li>
+            <li> 
+                <a href="/?action=edit&id=<?php echo $note['id']; ?>">
+                 <button>Edytuj</button>
+                </a>
+            </li>
+            
         </ul>
     <?php else: ?>
         <div>Brak notatek do wyswietlenia</div>

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
-require_once('Exception/NotFoundException.php');
+
 
 use App\Exception\StorageException;
 use App\Exception\ConfigurationException;
@@ -65,6 +65,19 @@ class Database
         return $note;
     }
 
+
+    public function editNotes(int $id, array $data) {
+        try {
+            // $id = $this->conn->quote($data['id']);
+            $title = $this->conn->quote($data['title']);
+            $description = $this->conn->quote($data['description']);
+            $query = "UPDATE `notes` SET `title`=$title, `description`=$description WHERE `id` = $id";
+            $this->conn->exec($query);
+
+        } catch (Throwable $e) {
+            throw new StorageException('Nie udalo sie pobrac danych o notatkach', 400, $e);
+        }
+    }
 
 
 

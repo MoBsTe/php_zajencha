@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App;
 
+spl_autoload_register(function (string $name) {
+    $name = str_replace(['\\', 'App/'], ['/', ''], $name);
+    $path = "src/$name.php";
+    require_once($path);
+});
 
-require_once('./Exception/AppException.php');
-require_once('./Exception/StorageException.php');
-require_once('./Exception/ConfigurationException.php');
-require_once('./src/NoteController.php');
-include_once('./src/Request.php');
 include_once('./src/utils/debug.php');
 require_once('./config/config.php');
 
@@ -17,11 +16,13 @@ require_once('./config/config.php');
 use App\Exception\AppException;
 use App\Exception\StorageException;
 use App\Exception\CofigurationException;
+use App\Controller\AbstractController;
+use App\Controller\NoteController;
 use App\Request;
-use Throwable;
 
 
-$request = new Request($_GET, $_POST);
+
+$request = new Request($_GET, $_POST, $_SERVER);
 
 try {
     AbstractController::initConfiguration($configuration);
@@ -30,7 +31,7 @@ try {
 } catch (AppException $e) {
     echo "<h1>Wsytapil blod w aplikacji!</h1>";
     echo '<h3>' . $e->getMessage() . '</h3>';
-} catch (Throwable $e) {
+} catch (\Throwable $e) {
     echo "<h1> Wystapil blod w aplikacji! </h1>";
     dump($e);
 }
