@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <form mothod="POST" action="/?action=delete">
+                <form method="POST" action="/?action=delete">
                     <input type="text" name="id" value="<?php echo $note['id'] ?>" hidden>
                     <input type="submit" value="Usun">
                 </form>

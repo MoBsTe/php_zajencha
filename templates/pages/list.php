@@ -24,6 +24,9 @@
                     case 'created':
                         echo "Notatka zostala utworzona";
                         break;
+                    case 'edited':
+                        echo "Notatka zostala zaktulizowana";
+                        break;
                     case 'deleted':
                         echo 'Notatka zostala usunieta';
                         break;
