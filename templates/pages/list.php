@@ -24,6 +24,9 @@
                     case 'created':
                         echo "Notatka zostala utworzona";
                         break;
+                    case 'deleted':
+                        echo 'Notatka zostala usunieta';
+                        break;
                 }
             }
             ?>
@@ -49,13 +52,15 @@
                                 <?php echo (int) $note['id'] ?>
                             </td>
                             <td>
-                                <?php echo htmlentities( $note['title']) ?>
+                                <?php echo htmlentities($note['title']) ?>
                             </td>
                             <td>
-                                <?php echo htmlentities( $note['datatime']) ?>
+                                <?php echo htmlentities($note['datatime']) ?>
                             </td>
-                            <td><a href="/?action=show&id=<?php echo (int) $note['id'] ?>">Options</a></td>
-
+                            <td>
+                                <a href="/?action=show&id=<?php echo (int) $note['id'] ?>"><button>Options</button></a>
+                                <a href="/?action=delete&id=<?php echo (int) $note['id'] ?>"><button>Usun</button></a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

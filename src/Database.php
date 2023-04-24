@@ -14,12 +14,6 @@ use PDOException;
 use Throwable;
 
 
-
-
-
-
-
-
 class Database
 {
     private PDO $conn;
@@ -66,13 +60,14 @@ class Database
     }
 
 
-    public function editNotes(int $id, array $data): void {
+    public function editNotes(int $id, array $data): void
+    {
         try {
             // $id = $this->conn->quote($data['id']);
             $title = $this->conn->quote($data['title']);
             $description = $this->conn->quote($data['description']);
 
-            $query = "UPDATE notes SET title = $title, description = $description WHERE id = $id";
+            $query = "UPDATE notes SET title = $title, description = $description WHERE id=$id";
             $this->conn->exec($query);
 
         } catch (Throwable $e) {
@@ -80,7 +75,16 @@ class Database
         }
     }
 
+    public function deleteNotes(int $id): void
+    {
+        try {
+            $query = "DELETE FROM notes WHERE id = $id";
+            $this->conn->exec($query);
 
+        } catch (Throwable $e) {
+            throw new StorageException('Nie udalo sie usunoc danych o notatkach', 400, $e);
+        }
+    }
 
     public function getNotes(): array
     {
